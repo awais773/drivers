@@ -14,16 +14,16 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <router-link class="navbar-brand" to="/">Home</router-link>
+          <!-- <router-link class="navbar-brand" to="/">Home</router-link> -->
           <ul class="navbar-nav mt-2 mt-lg-0 ml-auto" v-if="!user">
             <li class="nav-item active">
               <router-link class="nav-link" to="/login"
                 >Login <span class="sr-only">(current)</span></router-link
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/register">Sign Up</router-link>
-            </li>
+            </li> -->
           </ul>
           <ul class="navbar-nav mt-2 mt-lg-0 ml-auto" v-if="user">
             <li class="nav-item active">

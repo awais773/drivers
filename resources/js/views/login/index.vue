@@ -83,11 +83,11 @@
                         >Forgot Password?</router-link
                       >
                     </div>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                       <router-link class="small" to="/register"
                         >Create an Account!</router-link
                       >
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

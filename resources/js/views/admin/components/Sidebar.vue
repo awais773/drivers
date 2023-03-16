@@ -32,7 +32,7 @@
       <div class="sidebar-heading">Interface</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-link collapsed"
           href="#"
@@ -42,7 +42,7 @@
           aria-controls="collapseTwo"
         >
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>Vender</span>
         </a>
         <div
           id="collapseTwo"
@@ -52,14 +52,28 @@
         >
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <router-link class="collapse-item" to="/admin/components/buttons">Buttons</router-link>
-            <router-link class="collapse-item" to="/admin/components/cards">Cards</router-link>
+            <router-link class="collapse-item" to="/admin/components/AddUser">Add User</router-link>
+            <router-link class="collapse-item" to="/admin/user">List User</router-link>
           </div>
         </div>
+      </li> -->
+
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin/components/AddUser">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Add User</span></router-link
+        >
+      </li>
+
+        <li class="nav-item">
+        <router-link class="nav-link" to="/admin/user">
+          <i class="fas fa-fw fa-table"></i>
+          <span>User List</span></router-link
+        >
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-link collapsed"
           href="#"
@@ -87,16 +101,16 @@
             <router-link class="collapse-item" to="/admin/utilities/other">Other</router-link>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider" />
+      <!-- <hr class="sidebar-divider" /> -->
 
       <!-- Heading -->
-      <div class="sidebar-heading">Addons</div>
+      <!-- <div class="sidebar-heading">Addons</div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-link collapsed"
           href="#"
@@ -120,23 +134,23 @@
             <router-link class="collapse-item" to="/admin/pages/blank">Blank Page</router-link>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" to="/admin/charts">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></router-link
         >
-      </li>
+      </li> -->
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <router-link class="nav-link" to="/admin/tables">
+      <!-- <li class="nav-item">
+        <router-link class="nav-link" to="/admin/user">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></router-link
+          <span>User</span></router-link
         >
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />

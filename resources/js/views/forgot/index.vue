@@ -46,11 +46,11 @@
                       </span>
                     </div>
                     <hr />
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                       <router-link class="small" to="/register"
                         >Create an Account!</router-link
                       >
-                    </div>
+                    </div> -->
                     <div class="text-center">
                       <router-link class="small" to="/login"
                         >Already have an account? Login!</router-link

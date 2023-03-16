@@ -18,12 +18,12 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
+
+
+    public function location() {
+        return $this->hasMany(Location::class, 'user_id', 'id');  
+    }
 
     /**
      * The attributes that should be hidden for arrays.
