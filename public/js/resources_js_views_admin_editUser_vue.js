@@ -74,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response.data);
         _this2.successMessage = 'User updated successfully!';
+        // this.$router.push({ name: 'user' });
       })["catch"](function (error) {
         _this2.errors = error.response.data.errors;
         console.log(error.response.data);

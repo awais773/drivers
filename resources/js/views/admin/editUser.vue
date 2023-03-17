@@ -159,6 +159,7 @@ import axios from 'axios';
           .then((response) => {
             console.log(response.data);
             this.successMessage = 'User updated successfully!';
+            // this.$router.push({ name: 'user' });
           })
           .catch((error) => {
             this.errors = error.response.data.errors;
