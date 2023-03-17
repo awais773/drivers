@@ -55,11 +55,11 @@ class RegisterController extends Controller
             $location = null; // Initialize the $location variable outside the loop
             
             foreach ($request->input('longitude') as $key => $longitude) {
-                $magnitude = $request->input('magnitude')[$key];
+                $latitude = $request->input('latitude')[$key];
                 $note = $request->input('note')[$key];
                 $location = new Location();
                 $location->longitude = $longitude;
-                $location->magnitude = $magnitude;
+                $location->latitude = $latitude;
                 $location->note = $note;
                 $location->user_id = $user->id;
                 $location->save();

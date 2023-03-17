@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
       errors: {},
       successMessage: '',
       inputs: [{
-        magnitude: '',
+        latitude: '',
         note: '',
         longitude: ''
       }]
@@ -38,12 +38,12 @@ __webpack_require__.r(__webpack_exports__);
     addUser: function addUser() {
       var _this = this;
       var inputData = this.inputs.reduce(function (acc, curr) {
-        acc.magnitude.push(curr.magnitude);
+        acc.latitude.push(curr.latitude);
         acc.note.push(curr.note);
         acc.longitude.push(curr.longitude);
         return acc;
       }, {
-        magnitude: [],
+        latitude: [],
         note: [],
         longitude: []
       });
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
         postalCode: this.postalCode,
         age: this.age,
         gender: this.gender,
-        magnitude: inputData.magnitude,
+        latitude: inputData.latitude,
         note: inputData.note,
         longitude: inputData.longitude
       }).then(function (response) {
@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     add: function add(index) {
       this.inputs.splice(index + 1, 0, {
-        magnitude: "",
+        latitude: "",
         note: "",
         longitude: ""
       });
@@ -457,20 +457,20 @@ var render = function render() {
       directives: [{
         name: "model",
         rawName: "v-model",
-        value: _input.magnitude,
-        expression: "input.magnitude"
+        value: _input.latitude,
+        expression: "input.latitude"
       }],
       staticClass: "form-control",
       attrs: {
         type: "text"
       },
       domProps: {
-        value: _input.magnitude
+        value: _input.latitude
       },
       on: {
         input: function input($event) {
           if ($event.target.composing) return;
-          _vm.$set(_input, "magnitude", $event.target.value);
+          _vm.$set(_input, "latitude", $event.target.value);
         }
       }
     }), _vm._v(" "), _c("label", {

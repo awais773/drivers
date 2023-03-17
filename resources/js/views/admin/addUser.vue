@@ -81,7 +81,7 @@
     <label for="">Note:</label>
     <input type="text" class="form-control" v-model="input.note">
     <label for="">latitude:</label>
-    <input type="text" class="form-control" v-model="input.magnitude">
+    <input type="text" class="form-control" v-model="input.latitude">
     <label for="">longitude:</label>
     <input type="text" class="form-control" v-model="input.longitude">
     <br>
@@ -119,19 +119,19 @@
     gender: '',
     errors: {},
     successMessage: '',
-    inputs: [{ magnitude: '', note: '', longitude: '' }]
+    inputs: [{ latitude: '', note: '', longitude: '' }]
   }
 },
       methods: {
    addUser() {
     const inputData = this.inputs.reduce(
     (acc, curr) => {
-      acc.magnitude.push(curr.magnitude);
+      acc.latitude.push(curr.latitude);
       acc.note.push(curr.note);
       acc.longitude.push(curr.longitude);
       return acc;
     },
-    { magnitude: [], note: [], longitude: [] }
+    { latitude: [], note: [], longitude: [] }
   );
 
     axios
@@ -146,7 +146,7 @@
         postalCode: this.postalCode,
         age: this.age,
         gender: this.gender,
-        magnitude: inputData.magnitude,
+        latitude: inputData.latitude,
       note: inputData.note,
       longitude: inputData.longitude,     
      })
@@ -161,7 +161,7 @@
   },
   add(index) {
     this.inputs.splice(index + 1, 0, {
-      magnitude: "",
+      latitude: "",
       note: "",
       longitude: "",
     });

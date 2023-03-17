@@ -98,7 +98,6 @@ class AuthController extends Controller
     }
 
 
-
     public function updateVender(Request $request ,$id)
     {
         $obj = User::find($id);
@@ -147,7 +146,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        $data = User::latest()->with('location:user_id,note,magnitude,longitude',)->get();
+        $data = User::latest()->with('location:user_id,note,latitude,longitude',)->get();
         if (is_null($data)) {
             return response()->json([
                 'success' => 'Falls',
