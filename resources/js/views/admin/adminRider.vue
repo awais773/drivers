@@ -3,8 +3,8 @@
         <div class="card shadow mb-4">
             <div v-if="successMessage" class="alert alert-success">{{ successMessage }}</div>
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    DataTables Example
+              <h6 class="m-0 font-weight-bold text-primary">
+                  <router-link :to="{ name: 'adminAddRider' }" class="btn btn-primary">Add Rider</router-link>
                 </h6>
             </div>
             <div class="card-body">
@@ -97,10 +97,10 @@ export default {
 },
 
 mounted() {
-  axios.get('kitchenGet')
+  axios.get('riderGet')
     .then(response => {
       this.users = response.data.data;
-      console.log("Fetched kitchenGet:", this.users); // Add a console log to check if the data is being fetched correctly
+      console.log("Fetched riderGet:", this.users); // Add a console log to check if the data is being fetched correctly
       this.$nextTick(() => {
         $('#dataTable').DataTable();
       });

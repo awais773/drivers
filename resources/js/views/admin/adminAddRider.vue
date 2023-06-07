@@ -76,36 +76,34 @@
           </div>
         </div>
           <div class="col-sm">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="pic_lat">Pic latitude:</label>
-              <input type="text" id="pic_lat" class="form-control" v-model="pic_lat"
-              required
-              >
+              <input type="text" id="pic_lat" class="form-control" v-model="pic_lat">
+          </div> -->
+        </div>
+        <div class="col-sm">
+          <!-- <div class="form-group">
+              <label for="pic_long">Pic Longitude:</label>
+              <input type="text" id="pic_long" class="form-control" v-model="pic_long">
+          </div> -->
+        </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+              <label for="kitchen_name">Kitchen Name:</label>
+              <input type="text" id="kitchen_name" class="form-control" v-model="kitchen_name">
           </div>
         </div>
         <div class="col-sm">
           <div class="form-group">
-              <label for="pic_long">Pic Longitude:</label>
-              <input type="text" id="pic_long" class="form-control" v-model="pic_long"
-              required
-              >
-          </div>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        <div class="form-group">
-              <label for="kitchen_name">Kitchen Name:</label>
-              <input type="text" id="kitchen_name" class="form-control" v-model="kitchen_name"
-              required
-              >
+              <label for="ratting">Ratting :</label>
+              <input type="number" id="ratting" class="form-control" v-model="ratting">
           </div>
         </div>
         <div class="col-sm">
           <div id="app">
   <div class="form-group" v-for="(input, k) in inputs" :key="k">
-    <label for="">Box:</label>
-    <input type="text" class="form-control" v-model="input.box">
     <label for="">Note:</label>
     <input type="text" class="form-control" v-model="input.note">
     <label for="">latitude:</label>
@@ -120,10 +118,8 @@
   </div>
 </div>
         </div>
-        <div class="col-sm">
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Kitchen</button>
+    </div> -->
+    <button type="submit" class="btn btn-primary">Add Rider</button>
       </form>
     </div>
  </div>
@@ -148,29 +144,17 @@
     ratting: '',
     pic_long: '',
     age: '',
+    type: '',
     gender: '',
-    type: '', 
     errors: {},
     successMessage: '',
-    inputs: [{ latitude: '', note: '', longitude: '', box: '' }]
   }
 },
-
       methods: {
    addUser() {
-    const inputData = this.inputs.reduce(
-    (acc, curr) => {
-      acc.latitude.push(curr.latitude);
-      acc.note.push(curr.note);
-      acc.longitude.push(curr.longitude);
-      acc.box.push(curr.box);
-      return acc;
-    },
-    { latitude: [], note: [], longitude: [], box: [] }
-  );
-
+  
     axios
-      .post("addVender", {
+      .post("addRiderSignup", {
         first_name: this.first_name,
         email: this.email,
         password: this.password,
@@ -183,33 +167,20 @@
         gender: this.gender,
         pic_long: this.pic_long,
         pic_lat: this.pic_lat,
+        type: this.type = 'rider',
         kitchen_name: this.kitchen_name,
-        type: this.type = 'kitchen',
-        latitude: inputData.latitude,
-      note: inputData.note,
-      longitude: inputData.longitude,     
-      box: inputData.box,     
+        ratting: this.ratting, 
      })
       .then((response) => {
         console.log(response.data);
-        this.successMessage = "Kitchen added successfully!";
+        this.successMessage = "Rider added successfully!";
       })
       .catch((error) => {
         this.errors = error.response.data.errors;
         console.log(error.response.data);
       });
   },
-  add(index) {
-    this.inputs.splice(index + 1, 0, {
-      latitude: "",
-      note: "",
-      longitude: "",
-      box: "",
-    });
-  },
-  remove(index) {
-    this.inputs.splice(index, 1);
-  },
+
 },
    
   }

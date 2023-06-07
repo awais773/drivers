@@ -16,6 +16,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       first_name: '',
+      kitchen_name: '',
       email: '',
       password: '',
       contact_number: '',
@@ -23,14 +24,19 @@ __webpack_require__.r(__webpack_exports__);
       city: '',
       province: '',
       postalCode: '',
+      pic_lat: '',
+      ratting: '',
+      pic_long: '',
       age: '',
       gender: '',
+      type: '',
       errors: {},
       successMessage: '',
       inputs: [{
         latitude: '',
         note: '',
-        longitude: ''
+        longitude: '',
+        box: ''
       }]
     };
   },
@@ -41,11 +47,13 @@ __webpack_require__.r(__webpack_exports__);
         acc.latitude.push(curr.latitude);
         acc.note.push(curr.note);
         acc.longitude.push(curr.longitude);
+        acc.box.push(curr.box);
         return acc;
       }, {
         latitude: [],
         note: [],
-        longitude: []
+        longitude: [],
+        box: []
       });
       axios.post("addVender", {
         first_name: this.first_name,
@@ -58,12 +66,17 @@ __webpack_require__.r(__webpack_exports__);
         postalCode: this.postalCode,
         age: this.age,
         gender: this.gender,
+        pic_long: this.pic_long,
+        pic_lat: this.pic_lat,
+        kitchen_name: this.kitchen_name,
+        type: this.type = 'kitchen',
         latitude: inputData.latitude,
         note: inputData.note,
-        longitude: inputData.longitude
+        longitude: inputData.longitude,
+        box: inputData.box
       }).then(function (response) {
         console.log(response.data);
-        _this.successMessage = "User added successfully!";
+        _this.successMessage = "Kitchen added successfully!";
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
         console.log(error.response.data);
@@ -73,7 +86,8 @@ __webpack_require__.r(__webpack_exports__);
       this.inputs.splice(index + 1, 0, {
         latitude: "",
         note: "",
-        longitude: ""
+        longitude: "",
+        box: ""
       });
     },
     remove: function remove(index) {
@@ -418,6 +432,98 @@ var render = function render() {
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-sm"
   }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "pic_lat"
+    }
+  }, [_vm._v("Pic latitude:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.pic_lat,
+      expression: "pic_lat"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "pic_lat",
+      required: ""
+    },
+    domProps: {
+      value: _vm.pic_lat
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.pic_lat = $event.target.value;
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-sm"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "pic_long"
+    }
+  }, [_vm._v("Pic Longitude:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.pic_long,
+      expression: "pic_long"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "pic_long",
+      required: ""
+    },
+    domProps: {
+      value: _vm.pic_long
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.pic_long = $event.target.value;
+      }
+    }
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-sm"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "kitchen_name"
+    }
+  }, [_vm._v("Kitchen Name:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.kitchen_name,
+      expression: "kitchen_name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "kitchen_name",
+      required: ""
+    },
+    domProps: {
+      value: _vm.kitchen_name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.kitchen_name = $event.target.value;
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-sm"
+  }, [_c("div", {
     attrs: {
       id: "app"
     }
@@ -426,6 +532,30 @@ var render = function render() {
       key: k,
       staticClass: "form-group"
     }, [_c("label", {
+      attrs: {
+        "for": ""
+      }
+    }, [_vm._v("Box:")]), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _input.box,
+        expression: "input.box"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: _input.box
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(_input, "box", $event.target.value);
+        }
+      }
+    }), _vm._v(" "), _c("label", {
       attrs: {
         "for": ""
       }
@@ -531,7 +661,7 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Add User")])])])]);
+  }, [_vm._v("Add Kitchen")])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

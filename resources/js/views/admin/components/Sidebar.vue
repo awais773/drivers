@@ -61,16 +61,31 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/admin/components/AddUser">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Add User</span></router-link
+          <span>Add Kitchen</span></router-link
         >
       </li>
 
         <li class="nav-item">
         <router-link class="nav-link" to="/admin/user">
           <i class="fas fa-fw fa-table"></i>
-          <span>User List</span></router-link
+          <span>Kitchen List</span></router-link
         >
       </li>
+
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin/adminRider">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Rider List</span></router-link
+        >
+      </li>
+
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin/assignShow">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Assign</span></router-link
+        >
+      </li>
+
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <!-- <li class="nav-item">

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Assign;
 use Illuminate\Auth\Events\Registered;
 
 
@@ -51,39 +53,97 @@ class AuthController extends Controller
         ], 401);
     }
 
+
+    public function kitchenlogin(LoginRequest $request)
+    {
+        try {
+            if (Auth::attempt($request->only('email', 'password'))) {
+                /** @var User $user */
+                $user = Auth::user();
+                if ($user->user_type === 2) { // Check if user type is 1
+                    $token = $user->createToken('API Token')->accessToken;
+                    if (config('auth.must_verify_email') && !$user->hasVerifiedEmail()) {
+                        return response([
+                            'message' => 'Email must be verified.'
+                        ], 401);
+                    }
+                    return response([
+                        'success' => true,                       
+                        'token' => $token,
+                        'user' => $user,
+                        'user_type' => $user->user_type // Include the user_type in the response
+                    ]);
+                }
+                else { // If user type is not 1
+                    return response([
+                        'success' => false,
+                        'message' => 'Invalid Email or password.'
+                    ], 401);
+                }
+            }
+        } catch (\Exception $e) {
+            return response([
+                'success' => false,
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    
+        return response([
+            'message' => 'Invalid Email or password.'
+        ], 401);
+    }
+
+    public function adminlogin(LoginRequest $request)
+    {
+        try {
+            if (Auth::attempt($request->only('email', 'password'))) {
+                /** @var User $user */
+                $user = Auth::user();
+                if ($user->user_type === 1) { // Check if user type is 1
+                    $token = $user->createToken('API Token')->accessToken;
+                    if (config('auth.must_verify_email') && !$user->hasVerifiedEmail()) {
+                        return response([
+                            'message' => 'Email must be verified.'
+                        ], 401);
+                    }
+                    return response([
+                        'success' => true,                       
+                        'token' => $token,
+                        'user' => $user,
+                        'user_type' => $user->user_type // Include the user_type in the response
+                    ]);
+                }
+                else { // If user type is not 1
+                    return response([
+                        'success' => false,
+                        'message' => 'Invalid Email or password.'
+                    ], 401);
+                }
+            }
+        } catch (\Exception $e) {
+            return response([
+                'success' => false,
+                'message' => 'Internal error, please try again later.' //$e->getMessage()
+            ], 400);
+        }
+    
+        return response([
+            'message' => 'Invalid Email or password.'
+        ], 401);
+    }
+
+
     public function user()
     {
         return response()->json(Auth::user());
     }
 
-    public function updateProfile(Request $request)
+   
+    public function status(Request $request,$id)
     {
-        $id = $request->user()->id;
         $obj = User::find($id);
         if ($obj) {
-
-            if ($image = $request->file('image')) {
-                $destinationPath = 'profileImage/';
-                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-                $image->move($destinationPath, $profileImage);
-                $input['image'] = "$profileImage";
-                $obj->avatar = $profileImage;
-            }
-            if (!empty($request->input('first_name'))) {
-                $obj->first_name = $request->input('first_name');
-            }
-            if (!empty($request->input('email'))) {
-                $obj->email = $request->input('email');
-            }
-            if (!empty($request->input('password'))) {
-                $obj->password = Hash::make($request->input('password'));
-            }
-            if (!empty($request->input('contact_number'))) {
-                $obj->contact_number = $request->input('contact_number');
-            }
-            if (!empty($request->input('country'))) {
-                $obj->country = $request->input('country');
-            }
+          
             if (!empty($request->input('status'))) {
                 $obj->status = $request->input('status');
             }
@@ -96,7 +156,6 @@ class AuthController extends Controller
 
         return response()->json(['success' => $this->success, 'message' => $this->message, 'data' => $this->data,]);
     }
-
 
     public function updateVender(Request $request ,$id)
     {
@@ -143,37 +202,52 @@ class AuthController extends Controller
         return response()->json(['success' => $this->success, 'message' => $this->message, 'data' => $this->data,]);
     }
 
-
     public function index()
     {
-        $data = User::latest()->with('location:user_id,note,latitude,longitude',)->get();
-        if (is_null($data)) {
+        $user = Auth::guard('api')->user();
+        $assign = Assign::where('rider_id', $user->id)->get();
+        $assignedLocationIds = $assign->pluck('kitchen_id')->toArray();
+        $data = User::with('location:user_id,note,latitude,longitude,box')
+            ->whereIn('id', $assignedLocationIds)
+            ->latest()
+            ->get();
+        if ($data->isEmpty()) {
             return response()->json([
-                'success' => 'Falls',
-                'message' => 'data not found'
-            ],);
+                'success' => false,
+                'message' => 'Data not found'
+            ]);
         }
+    
         return response()->json([
-            'success' => 'True',
-            'message' => 'All Data susccessfull',
-            'data' => $data,
+            'success' => true,
+            'message' => 'All Data successful',
+            'data' => $data
         ]);
     }
 
-    public function show($id)
-    {
-        $program = User::find($id);
-        if (is_null($program)) {
-            return response()->json([
-                'success' => 'Falls',
-                'message' => 'data not found'
-            ], 404);
-        }
+public function show($id)
+{
+
+    $averageRating = User::avg('ratting');
+    $data = User::with('location:user_id,note,latitude,longitude')->where('id', $id)->first();
+
+    if (!$data) {
         return response()->json([
-            'success' => 'True',
-            'data' => $program,
-        ]);
-    } 
+            'success' => false,
+            'message' => 'Data not found'
+        ], 404);
+    }
+
+    $data['average_rating'] = $averageRating;
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Data successful',
+        'data' => $data,
+    ]);
+}
+
+
     
     public function destroy($id)
     {
@@ -192,5 +266,130 @@ class AuthController extends Controller
         ]);
     }  
     }
+
+    public function location() {
+        $user = Auth::guard('api')->user();
+        $location = Location::where('user_id',$user->id)->get();
+        if (is_null($location)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'data not fond'
+            ],);
+        }
+        return response()->json([
+            'success'=>true,
+            'message'=>' All data successfully.',
+            'date'=> $location 
+        ] ,200);
+
+    }
+
+
+    public function riderGet() {
+        $location = User::where('type','rider')->get();
+        if (is_null($location)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'data not fond'
+            ],);
+        }
+        return response()->json([
+            'success'=>true,
+            'message'=>' All data successfully.',
+            'data'=> $location 
+        ] ,200);
+
+    }
+
+
+
+    public function kitchenGet() {
+        $location = User::where('type','kitchen')->get();
+        if (is_null($location)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'data not fond'
+            ],);
+        }
+        return response()->json([
+            'success'=>true,
+            'message'=>' All data successfully.',
+            'data'=> $location 
+        ] ,200);
+
+    }
+
+  
+    public function RiderAssign(Request $request)
+    {
+        try {
+            $rider = $request->input('rider_id');
+            $location = null; 
+            foreach ($request->input('kitchen_id') as $key => $longitude) {
+                $location = new Assign();
+                $location->kitchen_id = $longitude;
+                $location->rider_id = $rider;
+                $location->save();
+            }
+    
+            return response()->json([
+                'success'=>true,
+                'message'=>'order added successfully.',
+                'location'=> $location // Return the last saved location
+            ] ,200);
+        } catch (\Exception $e) {
+            return response([
+                $e->getMessage()
+            ], 400);
+        } 
+
+
+    }
+
+
+    public function Assigngets()
+    {
+        $assign = Assign::with('rider:id,first_name', 'kitchen:id,first_name')->get();
+        
+        $result = $assign->groupBy('rider_id')->map(function ($item) {
+            $firstRider = $item->first()->rider;
+            $kitchens = $item->pluck('kitchen')->flatten();
+            $firstRider['kitchen'] = $kitchens;
+            
+            return $firstRider;
+        })->values();
+        
+        if ($result->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data not found'
+            ]);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'All Data successful',
+            'data' => $result
+        ]);
+    }
+    
+
+
+    public function updateLocation(Request $request, $id)
+{
+    $location = Location::find($id);
+    if (!$location) {
+        return response()->json(['message' => 'Location not found'], 404);
+    }
+
+    $box = $request->input('box');
+    $location->box = $box;
+    $location->save();
+
+    return response()->json(['message' => 'Location updated successfully', 'location' => $location]);
+}
+
+    
+  
 
 }

@@ -36,7 +36,7 @@
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-4">Welcome To Admin!</h1>
+                      <h1 class="h4 text-gray-900 mb-4">Welcome To Kitchen!</h1>
                     </div>
                     <form class="user" @submit.prevent="login">
                       <div class="form-group">
@@ -133,14 +133,14 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post("adminlogin", {
+        const response = await axios.post("kitchenlogin", {
           email: this.email,
           password: this.password,
         });
 
         localStorage.setItem("token", response.data.token);
         this.$store.dispatch("user", response.data.user);
-        this.$router.push("/admin");
+        this.$router.push("/kitchenadmin");
       } catch (error) {
         notify.authError(error);
       }
