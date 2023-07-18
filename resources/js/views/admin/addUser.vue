@@ -92,38 +92,7 @@
           </div>
         </div>
     </div>
-    <div class="row">
-      <div class="col-sm">
-        <div class="form-group">
-              <label for="kitchen_name">Kitchen Name:</label>
-              <input type="text" id="kitchen_name" class="form-control" v-model="kitchen_name"
-              required
-              >
-          </div>
-        </div>
-        <div class="col-sm">
-          <div id="app">
-  <div class="form-group" v-for="(input, k) in inputs" :key="k">
-    <label for="">Box:</label>
-    <input type="text" class="form-control" v-model="input.box">
-    <label for="">Note:</label>
-    <input type="text" class="form-control" v-model="input.note">
-    <label for="">latitude:</label>
-    <input type="text" class="form-control" v-model="input.latitude">
-    <label for="">longitude:</label>
-    <input type="text" class="form-control" v-model="input.longitude">
-    <br>
-    <span>
-      <i class="fas fa-minus-circle" @click="remove(k)" v-show="k || (!k && inputs.length > 1)">Remove</i>
-      <i class="fas fa-plus-circle" @click="add(k)" v-show="k == inputs.length - 1">Add Location</i>
-    </span>
-  </div>
-</div>
-        </div>
-        <div class="col-sm">
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Kitchen</button>
+    <button type="submit" class="btn btn-primary">Add Driver</button>
       </form>
     </div>
  </div>
@@ -152,23 +121,11 @@
     type: '', 
     errors: {},
     successMessage: '',
-    inputs: [{ latitude: '', note: '', longitude: '', box: '' }]
   }
 },
 
       methods: {
    addUser() {
-    const inputData = this.inputs.reduce(
-    (acc, curr) => {
-      acc.latitude.push(curr.latitude);
-      acc.note.push(curr.note);
-      acc.longitude.push(curr.longitude);
-      acc.box.push(curr.box);
-      return acc;
-    },
-    { latitude: [], note: [], longitude: [], box: [] }
-  );
-
     axios
       .post("addVender", {
         first_name: this.first_name,
@@ -184,11 +141,7 @@
         pic_long: this.pic_long,
         pic_lat: this.pic_lat,
         kitchen_name: this.kitchen_name,
-        type: this.type = 'kitchen',
-        latitude: inputData.latitude,
-      note: inputData.note,
-      longitude: inputData.longitude,     
-      box: inputData.box,     
+        type: this.type = 'kitchen',     
      })
       .then((response) => {
         console.log(response.data);
@@ -199,17 +152,7 @@
         console.log(error.response.data);
       });
   },
-  add(index) {
-    this.inputs.splice(index + 1, 0, {
-      latitude: "",
-      note: "",
-      longitude: "",
-      box: "",
-    });
-  },
-  remove(index) {
-    this.inputs.splice(index, 1);
-  },
+
 },
    
   }

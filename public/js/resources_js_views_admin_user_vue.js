@@ -82,7 +82,18 @@ var render = function render() {
     staticClass: "card shadow mb-4"
   }, [_vm.successMessage ? _c("div", {
     staticClass: "alert alert-success"
-  }, [_vm._v(_vm._s(_vm.successMessage))]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.successMessage))]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "card-header py-3"
+  }, [_c("h6", {
+    staticClass: "m-0 font-weight-bold text-primary"
+  }, [_c("router-link", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      to: {
+        name: "AddUser"
+      }
+    }
+  }, [_vm._v("Add Driver")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "table-responsive"
@@ -93,10 +104,10 @@ var render = function render() {
       width: "100%",
       cellspacing: "0"
     }
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.users, function (user) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.users, function (user) {
     return _c("tr", {
       key: user.id
-    }, [_c("td", [_vm._v(_vm._s(user.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.first_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.city))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.country))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.gender))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.status))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.contact_number))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.postalCode))]), _vm._v(" "), _c("td", [_c("button", {
+    }, [_c("td", [_vm._v(_vm._s(user.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.first_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.city))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.country))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.gender))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.contact_number))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.postalCode))]), _vm._v(" "), _c("td", [_c("button", {
       staticClass: "btn btn-danger",
       on: {
         click: function click($event) {
@@ -116,15 +127,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-header py-3"
-  }, [_c("h6", {
-    staticClass: "m-0 font-weight-bold text-primary"
-  }, [_vm._v("\n                DataTables Example\n            ")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("ID")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Email")]), _vm._v(" "), _c("th", [_vm._v("City")]), _vm._v(" "), _c("th", [_vm._v("Country")]), _vm._v(" "), _c("th", [_vm._v("Gender")]), _vm._v(" "), _c("th", [_vm._v("Status")]), _vm._v(" "), _c("th", [_vm._v("Country")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Postal Code")]), _vm._v(" "), _c("th", [_vm._v("Actions")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("ID")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Email")]), _vm._v(" "), _c("th", [_vm._v("City")]), _vm._v(" "), _c("th", [_vm._v("Country")]), _vm._v(" "), _c("th", [_vm._v("Gender")]), _vm._v(" "), _c("th", [_vm._v("Contact Number")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Postal Code")]), _vm._v(" "), _c("th", [_vm._v("Actions")])])]);
 }];
 render._withStripped = true;
 

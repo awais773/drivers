@@ -76,49 +76,11 @@
           </div>
         </div>
           <div class="col-sm">
-            <!-- <div class="form-group">
-              <label for="pic_lat">Pic latitude:</label>
-              <input type="text" id="pic_lat" class="form-control" v-model="pic_lat">
-          </div> -->
+         
         </div>
         <div class="col-sm">
-          <!-- <div class="form-group">
-              <label for="pic_long">Pic Longitude:</label>
-              <input type="text" id="pic_long" class="form-control" v-model="pic_long">
-          </div> -->
         </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-sm">
-        <div class="form-group">
-              <label for="kitchen_name">Kitchen Name:</label>
-              <input type="text" id="kitchen_name" class="form-control" v-model="kitchen_name">
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group">
-              <label for="ratting">Ratting :</label>
-              <input type="number" id="ratting" class="form-control" v-model="ratting">
-          </div>
-        </div>
-        <div class="col-sm">
-          <div id="app">
-  <div class="form-group" v-for="(input, k) in inputs" :key="k">
-    <label for="">Note:</label>
-    <input type="text" class="form-control" v-model="input.note">
-    <label for="">latitude:</label>
-    <input type="text" class="form-control" v-model="input.latitude">
-    <label for="">longitude:</label>
-    <input type="text" class="form-control" v-model="input.longitude">
-    <br>
-    <span>
-      <i class="fas fa-minus-circle" @click="remove(k)" v-show="k || (!k && inputs.length > 1)">Remove</i>
-      <i class="fas fa-plus-circle" @click="add(k)" v-show="k == inputs.length - 1">Add Location</i>
-    </span>
-  </div>
-</div>
-        </div>
-    </div> -->
     <button type="submit" class="btn btn-primary">Add Rider</button>
       </form>
     </div>

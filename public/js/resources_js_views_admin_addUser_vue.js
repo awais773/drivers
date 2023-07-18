@@ -31,30 +31,12 @@ __webpack_require__.r(__webpack_exports__);
       gender: '',
       type: '',
       errors: {},
-      successMessage: '',
-      inputs: [{
-        latitude: '',
-        note: '',
-        longitude: '',
-        box: ''
-      }]
+      successMessage: ''
     };
   },
   methods: {
     addUser: function addUser() {
       var _this = this;
-      var inputData = this.inputs.reduce(function (acc, curr) {
-        acc.latitude.push(curr.latitude);
-        acc.note.push(curr.note);
-        acc.longitude.push(curr.longitude);
-        acc.box.push(curr.box);
-        return acc;
-      }, {
-        latitude: [],
-        note: [],
-        longitude: [],
-        box: []
-      });
       axios.post("addVender", {
         first_name: this.first_name,
         email: this.email,
@@ -69,11 +51,7 @@ __webpack_require__.r(__webpack_exports__);
         pic_long: this.pic_long,
         pic_lat: this.pic_lat,
         kitchen_name: this.kitchen_name,
-        type: this.type = 'kitchen',
-        latitude: inputData.latitude,
-        note: inputData.note,
-        longitude: inputData.longitude,
-        box: inputData.box
+        type: this.type = 'kitchen'
       }).then(function (response) {
         console.log(response.data);
         _this.successMessage = "Kitchen added successfully!";
@@ -81,17 +59,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = error.response.data.errors;
         console.log(error.response.data);
       });
-    },
-    add: function add(index) {
-      this.inputs.splice(index + 1, 0, {
-        latitude: "",
-        note: "",
-        longitude: "",
-        box: ""
-      });
-    },
-    remove: function remove(index) {
-      this.inputs.splice(index, 1);
     }
   }
 });
@@ -489,179 +456,12 @@ var render = function render() {
         _vm.pic_long = $event.target.value;
       }
     }
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-sm"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "kitchen_name"
-    }
-  }, [_vm._v("Kitchen Name:")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.kitchen_name,
-      expression: "kitchen_name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "kitchen_name",
-      required: ""
-    },
-    domProps: {
-      value: _vm.kitchen_name
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.kitchen_name = $event.target.value;
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm"
-  }, [_c("div", {
-    attrs: {
-      id: "app"
-    }
-  }, _vm._l(_vm.inputs, function (_input, k) {
-    return _c("div", {
-      key: k,
-      staticClass: "form-group"
-    }, [_c("label", {
-      attrs: {
-        "for": ""
-      }
-    }, [_vm._v("Box:")]), _vm._v(" "), _c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _input.box,
-        expression: "input.box"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: _input.box
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(_input, "box", $event.target.value);
-        }
-      }
-    }), _vm._v(" "), _c("label", {
-      attrs: {
-        "for": ""
-      }
-    }, [_vm._v("Note:")]), _vm._v(" "), _c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _input.note,
-        expression: "input.note"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: _input.note
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(_input, "note", $event.target.value);
-        }
-      }
-    }), _vm._v(" "), _c("label", {
-      attrs: {
-        "for": ""
-      }
-    }, [_vm._v("latitude:")]), _vm._v(" "), _c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _input.latitude,
-        expression: "input.latitude"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: _input.latitude
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(_input, "latitude", $event.target.value);
-        }
-      }
-    }), _vm._v(" "), _c("label", {
-      attrs: {
-        "for": ""
-      }
-    }, [_vm._v("longitude:")]), _vm._v(" "), _c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _input.longitude,
-        expression: "input.longitude"
-      }],
-      staticClass: "form-control",
-      attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: _input.longitude
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-          _vm.$set(_input, "longitude", $event.target.value);
-        }
-      }
-    }), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", [_c("i", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: k || !k && _vm.inputs.length > 1,
-        expression: "k || (!k && inputs.length > 1)"
-      }],
-      staticClass: "fas fa-minus-circle",
-      on: {
-        click: function click($event) {
-          return _vm.remove(k);
-        }
-      }
-    }, [_vm._v("Remove")]), _vm._v(" "), _c("i", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: k == _vm.inputs.length - 1,
-        expression: "k == inputs.length - 1"
-      }],
-      staticClass: "fas fa-plus-circle",
-      on: {
-        click: function click($event) {
-          return _vm.add(k);
-        }
-      }
-    }, [_vm._v("Add Location")])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm"
-  })]), _vm._v(" "), _c("button", {
+  })])])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Add Kitchen")])])])]);
+  }, [_vm._v("Add Driver")])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

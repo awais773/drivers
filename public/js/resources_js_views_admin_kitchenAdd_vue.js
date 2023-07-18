@@ -40,21 +40,21 @@ __webpack_require__.r(__webpack_exports__);
     decrementBox: function decrementBox(location) {
       if (location.box > 1) {
         location.box--;
-        this.updateBox(location);
       }
     },
-    // Increase the box value
     incrementBox: function incrementBox(location) {
       if (location.box < 20) {
         location.box++;
-        this.updateBox(location);
       }
     },
-    updateBox: function updateBox(location) {
+    updateLocation: function updateLocation(location) {
+      var _this2 = this;
       axios.put("updateLocation/".concat(location.id), {
-        box: location.box
+        box: location.box,
+        note: location.note
       }).then(function (response) {
         console.log(response.data);
+        _this2.successMessage = "Order added successfully!";
       })["catch"](function (error) {
         console.log(error);
       });
@@ -97,7 +97,26 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.locationData, function (location) {
     return _c("tr", {
       key: location.id
-    }, [_c("td", [_vm._v(_vm._s(location.latitude))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(location.longitude))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(location.note))]), _vm._v(" "), _c("td", [_c("div", {
+    }, [_c("td", [_vm._v(_vm._s(location.latitude))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(location.longitude))]), _vm._v(" "), _c("td", [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: location.note,
+        expression: "location.note"
+      }],
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: location.note
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(location, "note", $event.target.value);
+        }
+      }
+    })]), _vm._v(" "), _c("td", [_c("div", {
       staticClass: "number-input"
     }, [_c("button", {
       staticClass: "number-input__btn",
@@ -117,13 +136,20 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-plus"
-    })])])]), _vm._v(" "), _c("td")]);
+    })])])]), _vm._v(" "), _c("td", [_c("button", {
+      staticClass: "btn btn-primary",
+      on: {
+        click: function click($event) {
+          return _vm.updateLocation(location);
+        }
+      }
+    }, [_vm._v("Send")])])]);
   }), 0)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("Latitude")]), _vm._v(" "), _c("th", [_vm._v("Longitude")]), _vm._v(" "), _c("th", [_vm._v("Note")]), _vm._v(" "), _c("th", [_vm._v("Box")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Latitude")]), _vm._v(" "), _c("th", [_vm._v("Longitude")]), _vm._v(" "), _c("th", [_vm._v("Note")]), _vm._v(" "), _c("th", [_vm._v("Box")]), _vm._v(" "), _c("th", [_vm._v("Action")])])]);
 }];
 render._withStripped = true;
 

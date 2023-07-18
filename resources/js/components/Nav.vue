@@ -21,9 +21,9 @@
                 >Admin Login <span class="sr-only">(current)</span></router-link
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/kitchenLogin">Kitchen Login</router-link>
-            </li>
+            </li> -->
           </ul>
           <ul class="navbar-nav mt-2 mt-lg-0 ml-auto" v-if="user">
             <li class="nav-item active">

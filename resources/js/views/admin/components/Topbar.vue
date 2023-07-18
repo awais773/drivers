@@ -90,10 +90,10 @@
           <span class="mr-2 d-none d-lg-inline text-gray-600 small"
             >{{ user.first_name }} {{ user.last_name }}</span
           >
-          <img
+          <!-- <img
             class="img-profile rounded-circle"
             src="img/undraw_profile.svg"
-          />
+          /> -->
         </a>
         <!-- Dropdown - User Information -->
         <div

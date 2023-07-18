@@ -122,7 +122,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-lg-6 d-none d-lg-block bg-login-image"
+    staticClass: "col-lg-6 d-none d-lg-block"
   }), _vm._v(" "), _c("div", {
     staticClass: "col-lg-6"
   }, [_c("div", {

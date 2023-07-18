@@ -22,36 +22,77 @@ class AuthController extends Controller
     private $data = [];
 
 
-    public function login(LoginRequest $request)
+    // public function login(LoginRequest $request)
+    // {
+    //     try {
+    //         if (Auth::attempt($request->only('email', 'password'))) {
+    //             /** @var User $user */
+    //             $user = Auth::user();
+    //             $token = $user->createToken('API Token')->accessToken;
+
+    //             if (config('auth.must_verify_email') && !$user->hasVerifiedEmail()) {
+    //                 return response([
+    //                     'message' => 'Email must be verified.'
+    //                 ], 401);
+    //             }
+
+    //             return response([
+    //                 'message' => 'success',
+    //                 'token' => $token,
+    //                 'user' => $user
+    //             ]);
+    //         }
+    //     } catch (\Exception $e) {
+    //         return response([
+    //             'message' => 'Internal error, please try again later.' //$e->getMessage()
+    //         ], 400);
+    //     }
+
+    //     return response([
+    //         'message' => 'Invalid Email or password.'
+    //     ], 401);
+    // }
+
+     public function login(LoginRequest $request)
     {
         try {
             if (Auth::attempt($request->only('email', 'password'))) {
                 /** @var User $user */
                 $user = Auth::user();
-                $token = $user->createToken('API Token')->accessToken;
-
-                if (config('auth.must_verify_email') && !$user->hasVerifiedEmail()) {
+                $user->device_token = $request->input('device_token');
+                $user->save();
+                if ($user->type === 'rider') { // Check if user type is 1
+                    $token = $user->createToken('API Token')->accessToken;
+                    if (config('auth.must_verify_email') && !$user->hasVerifiedEmail()) {
+                        return response([
+                            'message' => 'Email must be verified.'
+                        ], 401);
+                    }
                     return response([
-                        'message' => 'Email must be verified.'
+                        'message' => 'success',
+                        'token' => $token,
+                        'user' => $user
+                    ]);
+                }
+                else { // If user type is not 1
+                    return response([
+                        'success' => false,
+                        'message' => 'Invalid Email or password.'
                     ], 401);
                 }
-
-                return response([
-                    'message' => 'success',
-                    'token' => $token,
-                    'user' => $user
-                ]);
             }
         } catch (\Exception $e) {
             return response([
+                'success' => false,
                 'message' => 'Internal error, please try again later.' //$e->getMessage()
             ], 400);
         }
-
+    
         return response([
             'message' => 'Invalid Email or password.'
         ], 401);
     }
+
 
 
     public function kitchenlogin(LoginRequest $request)
@@ -381,12 +422,47 @@ public function show($id)
     if (!$location) {
         return response()->json(['message' => 'Location not found'], 404);
     }
-
     $box = $request->input('box');
+    $note = $request->input('note');
     $location->box = $box;
+    $location->note = $note;
     $location->save();
+    $user = Auth::guard('api')->user();
+    $locations = Assign::Where('kitchen_id',$user->id)->get();
+    $notification = $locations->pluck('rider_id');
+    $firebaseToken = User::whereIn('id', [$notification])->whereNotNull('device_token')->pluck('device_token')->all();
+    $SERVER_API_KEY = 'AAAARhq1Ok4:APA91bFktsn5csGjbfYKsSoMzKUTO8eTHxEC3EHTHHnc41WRHgZ6PA_mKRU1jjzxsP0zyZPYWg_3CWdSiJ8BhxOjtZF4W3OZwxSDUYkzTydCo81L2LGz1bWGXj-vHJtZWG3ubg9lGBjv';
+    $data = [
+        "registration_ids" => $firebaseToken,
+        "notification" => [
+            "title" => 'Oder',
+            "body" => 'Check New Order',
+        ]
+    ];
+    $dataString = json_encode($data);
 
-    return response()->json(['message' => 'Location updated successfully', 'location' => $location]);
+    $headers = [
+        'Authorization: key=' . $SERVER_API_KEY,
+        'Content-Type: application/json',
+    ];
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+    $response = curl_exec($ch);   
+    return response()->json([
+        'message' => 'Location updated successfully', 
+        'location' => $location,
+        'data' => $response,
+    ]);
+
+
 }
 
     

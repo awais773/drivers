@@ -2,7 +2,7 @@
     <footer class="footer footer-dark bg-dark">
       <div class="container text-center py-5">
         <p>
-          Laravel and Vue Admin Dashboard @
+          Driver And Vehicle Management Portal Dashboard @
         </p>
       </div>
     </footer>

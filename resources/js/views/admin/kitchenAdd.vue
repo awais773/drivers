@@ -5,38 +5,37 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Latitude</th>
+              <th>Latitude</th>
             <th>Longitude</th>
             <th>Note</th>
             <th>Box</th>
-            <!-- <th>Action</th> -->
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="location in locationData" :key="location.id">
             <td>{{ location.latitude }}</td>
             <td>{{ location.longitude }}</td>
-            <td>{{ location.note }}</td>
             <td>
-  <div class="number-input">
-    <button class="number-input__btn" @click="decrementBox(location)">
-      <i class="fas fa-minus"></i>
-    </button>
-    <span>{{ location.box }}</span>
-    <button class="number-input__btn" @click="incrementBox(location)">
-      <i class="fas fa-plus"></i>
-    </button>
-  </div>
-</td>
+              <input type="text" v-model="location.note" />
+            </td>
             <td>
+              <div class="number-input">
+                <button class="number-input__btn" @click="decrementBox(location)">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span>{{ location.box }}</span>
+                <button class="number-input__btn" @click="incrementBox(location)">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </td>
+            <td>
+              <button @click="updateLocation(location)" class="btn btn-primary">Send</button>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <!-- <form @submit.prevent="addUser">
-        <button type="submit" class="btn btn-primary">Add Order</button>
-      </form> -->
     </div>
   </div>
 </template>
@@ -71,33 +70,32 @@ export default {
         });
     },
 
-
     decrementBox(location) {
-    if (location.box > 1) {
-      location.box--;
-      this.updateBox(location);
-    }
-  },
-  
-  // Increase the box value
-  incrementBox(location) {
-    if (location.box < 20) {
-      location.box++;
-      this.updateBox(location);
-    }
-  },
+      if (location.box > 1) {
+        location.box--;
+      }
+    },
 
-  updateBox(location) {
-    axios.put(`updateLocation/${location.id}`, {
-      box: location.box
-    })
-      .then((response) => {
-        console.log(response.data);
+    incrementBox(location) {
+      if (location.box < 20) {
+        location.box++;
+      }
+    },
+
+    updateLocation(location) {
+      axios.put(`updateLocation/${location.id}`, {
+        box: location.box,
+        note: location.note
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+        .then((response) => {
+          console.log(response.data);
+          this.successMessage = "Order added successfully!";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     deleteLocation(locationId) {
       this.locationData = this.locationData.filter(location => location.id !== locationId);
     },

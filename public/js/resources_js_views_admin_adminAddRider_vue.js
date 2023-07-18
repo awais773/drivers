@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addUser: function addUser() {
       var _this = this;
-      axios.post("addVender", {
+      axios.post("addRiderSignup", {
         first_name: this.first_name,
         email: this.email,
         password: this.password,

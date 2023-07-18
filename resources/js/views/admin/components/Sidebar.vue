@@ -11,12 +11,10 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3"> Admin <sup></sup></div>
       </router-link>
-
       <!-- Divider -->
       <hr class="sidebar-divider my-0" />
-
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <router-link class="nav-link" to="/admin">
@@ -58,33 +56,33 @@
         </div>
       </li> -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" to="/admin/components/AddUser">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Add Kitchen</span></router-link
         >
-      </li>
+      </li> -->
 
         <li class="nav-item">
         <router-link class="nav-link" to="/admin/user">
           <i class="fas fa-fw fa-table"></i>
-          <span>Kitchen List</span></router-link
+          <span>Driver</span></router-link
         >
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" to="/admin/adminRider">
           <i class="fas fa-fw fa-table"></i>
           <span>Rider List</span></router-link
         >
-      </li>
+      </li> -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" to="/admin/assignShow">
           <i class="fas fa-fw fa-table"></i>
           <span>Assign</span></router-link
         >
-      </li>
+      </li> -->
 
 
       <!-- Nav Item - Utilities Collapse Menu -->

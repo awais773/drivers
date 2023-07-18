@@ -2335,14 +2335,7 @@ var render = function render() {
     }
   }, [_vm._v("Admin Login "), _c("span", {
     staticClass: "sr-only"
-  }, [_vm._v("(current)")])])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/kitchenLogin"
-    }
-  }, [_vm._v("Kitchen Login")])], 1)]) : _vm._e(), _vm._v(" "), _vm.user ? _c("ul", {
+  }, [_vm._v("(current)")])])], 1)]) : _vm._e(), _vm._v(" "), _vm.user ? _c("ul", {
     staticClass: "navbar-nav mt-2 mt-lg-0 ml-auto"
   }, [_c("li", {
     staticClass: "nav-item active"
@@ -2411,7 +2404,7 @@ var render = function render() {
     staticClass: "fas fa-laugh-wink"
   })]), _vm._v(" "), _c("div", {
     staticClass: "sidebar-brand-text mx-3"
-  }, [_vm._v("SB Admin "), _c("sup", [_vm._v("2")])])]), _vm._v(" "), _c("hr", {
+  }, [_vm._v(" Admin "), _c("sup")])]), _vm._v(" "), _c("hr", {
     staticClass: "sidebar-divider my-0"
   }), _vm._v(" "), _c("li", {
     staticClass: "nav-item active"
@@ -2431,38 +2424,11 @@ var render = function render() {
   }, [_c("router-link", {
     staticClass: "nav-link",
     attrs: {
-      to: "/admin/components/AddUser"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-fw fa-chart-area"
-  }), _vm._v(" "), _c("span", [_vm._v("Add Kitchen")])])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
       to: "/admin/user"
     }
   }, [_c("i", {
     staticClass: "fas fa-fw fa-table"
-  }), _vm._v(" "), _c("span", [_vm._v("Kitchen List")])])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/adminRider"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-fw fa-table"
-  }), _vm._v(" "), _c("span", [_vm._v("Rider List")])])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link",
-    attrs: {
-      to: "/admin/assignShow"
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-fw fa-table"
-  }), _vm._v(" "), _c("span", [_vm._v("Assign")])])], 1), _vm._v(" "), _c("hr", {
+  }), _vm._v(" "), _c("span", [_vm._v("Driver")])])], 1), _vm._v(" "), _c("hr", {
     staticClass: "sidebar-divider d-none d-md-block"
   }), _vm._v(" "), _vm._m(0)], 1);
 };
@@ -2596,12 +2562,7 @@ var render = function render() {
     }
   }, [_c("span", {
     staticClass: "mr-2 d-none d-lg-inline text-gray-600 small"
-  }, [_vm._v(_vm._s(_vm.user.first_name) + " " + _vm._s(_vm.user.last_name))]), _vm._v(" "), _c("img", {
-    staticClass: "img-profile rounded-circle",
-    attrs: {
-      src: "img/undraw_profile.svg"
-    }
-  })]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.user.first_name) + " " + _vm._s(_vm.user.last_name))])]), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right shadow animated--grow-in",
     attrs: {
       "aria-labelledby": "userDropdown"
@@ -2724,7 +2685,7 @@ var staticRenderFns = [function () {
     staticClass: "container my-auto"
   }, [_c("div", {
     staticClass: "copyright text-center my-auto"
-  }, [_c("span", [_vm._v("Copyright © Your Website 2021")])])])]);
+  }, [_c("span", [_vm._v("Driver And Vehicle Management Portal © Your Website 2023")])])])]);
 }];
 render._withStripped = true;
 
