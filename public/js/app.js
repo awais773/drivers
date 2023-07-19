@@ -2424,11 +2424,20 @@ var render = function render() {
   }, [_c("router-link", {
     staticClass: "nav-link",
     attrs: {
-      to: "/admin/user"
+      to: "/admin/driver"
     }
   }, [_c("i", {
     staticClass: "fas fa-fw fa-table"
-  }), _vm._v(" "), _c("span", [_vm._v("Driver")])])], 1), _vm._v(" "), _c("hr", {
+  }), _vm._v(" "), _c("span", [_vm._v("Driver")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: "/admin/Vehicle"
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-fw fa-table"
+  }), _vm._v(" "), _c("span", [_vm._v("Vehicle")])])], 1), _vm._v(" "), _c("hr", {
     staticClass: "sidebar-divider d-none d-md-block"
   }), _vm._v(" "), _vm._m(0)], 1);
 };
@@ -2952,10 +2961,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
       layout: _views_admin_layout_indexkitchen__WEBPACK_IMPORTED_MODULE_2__["default"]
     }
   }, {
-    path: "/admin/components/AddUser",
-    name: "AddUser",
+    path: "/admin/components/addDriver",
+    name: "addDriver",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_addUser_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/addUser.vue */ "./resources/js/views/admin/addUser.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_addDriver_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/addDriver.vue */ "./resources/js/views/admin/addDriver.vue"));
     },
     meta: {
       requiresAuth: true,
@@ -2972,30 +2981,30 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__["default"]
     }
   }, {
-    path: "/admin/user",
-    name: "user",
+    path: "/admin/driver",
+    name: "driver",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_user_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/user.vue */ "./resources/js/views/admin/user.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_driver_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/driver.vue */ "./resources/js/views/admin/driver.vue"));
     },
     meta: {
       requiresAuth: true,
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__["default"]
     }
   }, {
-    path: "/admin/adminAddRider",
-    name: "adminAddRider",
+    path: "/admin/addVehicle",
+    name: "addVehicle",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_adminAddRider_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/adminAddRider.vue */ "./resources/js/views/admin/adminAddRider.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_addVehicle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/addVehicle.vue */ "./resources/js/views/admin/addVehicle.vue"));
     },
     meta: {
       requiresAuth: true,
       layout: _views_admin_layout_index__WEBPACK_IMPORTED_MODULE_1__["default"]
     }
   }, {
-    path: "/admin/adminRider",
+    path: "/admin/Vehicle",
     name: "adminRider",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_adminRider_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/adminRider.vue */ "./resources/js/views/admin/adminRider.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_Vehicle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/Vehicle.vue */ "./resources/js/views/admin/Vehicle.vue"));
     },
     meta: {
       requiresAuth: true,
@@ -93501,7 +93510,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_login_index_vue":1,"resources_js_views_login_kitchenLogin_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_dashboards_vue":1,"resources_js_views_admin_addUser_vue":1,"resources_js_views_admin_editUser_vue":1,"resources_js_views_admin_user_vue":1,"resources_js_views_admin_adminAddRider_vue":1,"resources_js_views_admin_adminRider_vue":1,"resources_js_views_admin_assign_vue":1,"resources_js_views_admin_assignShow_vue":1,"resources_js_views_admin_kitchen_vue":1,"resources_js_views_admin_kitchenAdd_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_login_index_vue":1,"resources_js_views_login_kitchenLogin_vue":1,"resources_js_views_register_index_vue":1,"resources_js_views_verify_index_vue":1,"resources_js_views_forgot_index_vue":1,"resources_js_views_reset_index_vue":1,"resources_js_views_admin_dashboard_vue":1,"resources_js_views_admin_dashboards_vue":1,"resources_js_views_admin_addDriver_vue":1,"resources_js_views_admin_editUser_vue":1,"resources_js_views_admin_driver_vue":1,"resources_js_views_admin_addVehicle_vue":1,"resources_js_views_admin_Vehicle_vue":1,"resources_js_views_admin_assign_vue":1,"resources_js_views_admin_assignShow_vue":1,"resources_js_views_admin_kitchen_vue":1,"resources_js_views_admin_kitchenAdd_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

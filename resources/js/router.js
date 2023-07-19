@@ -71,9 +71,9 @@ let router = new Router({
         },
 
         {
-            path: "/admin/components/AddUser",
-            name: "AddUser",
-            component: () => import("./views/admin/addUser.vue"),
+            path: "/admin/components/addDriver",
+            name: "addDriver",
+            component: () => import("./views/admin/addDriver.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout
@@ -92,20 +92,9 @@ let router = new Router({
         },
 
         {
-            path: "/admin/user",
-            name: "user",
-            component: () => import("./views/admin/user.vue"),
-            meta: {
-                requiresAuth: true,
-                layout: AdminLayout
-            }
-        },
-
-
-        {
-            path: "/admin/adminAddRider",
-            name: "adminAddRider",
-            component: () => import("./views/admin/adminAddRider.vue"),
+            path: "/admin/driver",
+            name: "driver",
+            component: () => import("./views/admin/driver.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout
@@ -113,9 +102,19 @@ let router = new Router({
         },
 
         {
-            path: "/admin/adminRider",
+            path: "/admin/addVehicle",
+            name: "addVehicle",
+            component: () => import("./views/admin/addVehicle.vue"),
+            meta: {
+                requiresAuth: true,
+                layout: AdminLayout
+            }
+        },
+
+        {
+            path: "/admin/Vehicle",
             name: "adminRider",
-            component: () => import("./views/admin/adminRider.vue"),
+            component: () => import("./views/admin/Vehicle.vue"),
             meta: {
                 requiresAuth: true,
                 layout: AdminLayout

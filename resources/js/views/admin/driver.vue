@@ -3,8 +3,8 @@
         <div class="card shadow mb-4">
             <div v-if="successMessage" class="alert alert-success">{{ successMessage }}</div>
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">
-                  <router-link :to="{ name: 'adminAddRider' }" class="btn btn-primary">Add Rider</router-link>
+                <h6 class="m-0 font-weight-bold text-primary">
+                  <router-link :to="{ name: 'addDriver' }" class="btn btn-primary">Add Driver</router-link>
                 </h6>
             </div>
             <div class="card-body">
@@ -30,10 +30,7 @@
                                 <th>Country</th>
 
                                 <th>Gender</th>
-
-                                <th>Status</th>
-
-                                <th>Country</th>
+                                <th>Contact Number</th>
                                 <th>Age</th>
                                 <th>Postal Code</th>
                                 <!-- <th>Location</th> -->
@@ -52,7 +49,6 @@
                                 <td>{{ user.city }}</td>
                                 <td>{{ user.country }}</td>
                                 <td>{{ user.gender }}</td>
-                                <td>{{ user.status }}</td>
                                 <td>{{ user.contact_number }}</td>
                                 <td>{{ user.age }}</td>
                                 <td>{{ user.postalCode }}</td>
@@ -97,10 +93,10 @@ export default {
 },
 
 mounted() {
-  axios.get('riderGet')
+  axios.get('kitchenGet')
     .then(response => {
       this.users = response.data.data;
-      console.log("Fetched riderGet:", this.users); // Add a console log to check if the data is being fetched correctly
+      console.log("Fetched kitchenGet:", this.users); // Add a console log to check if the data is being fetched correctly
       this.$nextTick(() => {
         $('#dataTable').DataTable();
       });

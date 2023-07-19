@@ -3,8 +3,8 @@
         <div class="card shadow mb-4">
             <div v-if="successMessage" class="alert alert-success">{{ successMessage }}</div>
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                  <router-link :to="{ name: 'AddUser' }" class="btn btn-primary">Add Driver</router-link>
+              <h6 class="m-0 font-weight-bold text-primary">
+                  <router-link :to="{ name: 'addVehicle' }" class="btn btn-primary">Add Vehicle</router-link>
                 </h6>
             </div>
             <div class="card-body">
@@ -23,16 +23,15 @@
 
                                 <th>Name</th>
 
-                                <th>Email</th>
+                                <th>Capacity</th>
 
-                                <th>City</th>
+                                <th>Icon Types</th>
 
-                                <th>Country</th>
+                                <th>Supported Vehicles</th>
 
-                                <th>Gender</th>
-                                <th>Contact Number</th>
-                                <th>Age</th>
-                                <th>Postal Code</th>
+                                <th>Description</th>
+
+                                <th>Icon</th>
                                 <!-- <th>Location</th> -->
                                 <th>Actions</th>
 
@@ -49,9 +48,7 @@
                                 <td>{{ user.city }}</td>
                                 <td>{{ user.country }}</td>
                                 <td>{{ user.gender }}</td>
-                                <td>{{ user.contact_number }}</td>
-                                <td>{{ user.age }}</td>
-                                <td>{{ user.postalCode }}</td>
+                                <td>{{ user.status }}</td>
                                 <!-- <td>
                   <ul>
                     <li v-for="location in user.location">
@@ -93,10 +90,10 @@ export default {
 },
 
 mounted() {
-  axios.get('kitchenGet')
+  axios.get('riderGet')
     .then(response => {
       this.users = response.data.data;
-      console.log("Fetched kitchenGet:", this.users); // Add a console log to check if the data is being fetched correctly
+      console.log("Fetched riderGet:", this.users); // Add a console log to check if the data is being fetched correctly
       this.$nextTick(() => {
         $('#dataTable').DataTable();
       });

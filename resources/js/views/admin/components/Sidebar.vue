@@ -64,18 +64,18 @@
       </li> -->
 
         <li class="nav-item">
-        <router-link class="nav-link" to="/admin/user">
+        <router-link class="nav-link" to="/admin/driver">
           <i class="fas fa-fw fa-table"></i>
           <span>Driver</span></router-link
         >
       </li>
 
-      <!-- <li class="nav-item">
-        <router-link class="nav-link" to="/admin/adminRider">
+      <li class="nav-item">
+        <router-link class="nav-link" to="/admin/Vehicle">
           <i class="fas fa-fw fa-table"></i>
-          <span>Rider List</span></router-link
+          <span>Vehicle</span></router-link
         >
-      </li> -->
+      </li>
 
       <!-- <li class="nav-item">
         <router-link class="nav-link" to="/admin/assignShow">

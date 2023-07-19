@@ -31,12 +31,14 @@ __webpack_require__.r(__webpack_exports__);
       gender: '',
       type: '',
       errors: {},
-      successMessage: ''
+      successMessage: '',
+      isLoading: false
     };
   },
   methods: {
     addUser: function addUser() {
       var _this = this;
+      this.isLoading = true;
       axios.post("addVender", {
         first_name: this.first_name,
         email: this.email,
@@ -58,6 +60,8 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
         console.log(error.response.data);
+      })["finally"](function () {
+        _this.isLoading = false; // Set isLoading to false after the API call completes
       });
     }
   }
@@ -459,9 +463,16 @@ var render = function render() {
   })])])]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
-      type: "submit"
+      type: "submit",
+      disabled: _vm.isLoading
     }
-  }, [_vm._v("Add Driver")])])])]);
+  }, [_vm.isLoading ? _c("span", {
+    staticClass: "spinner-border spinner-border-sm",
+    attrs: {
+      role: "status",
+      "aria-hidden": "true"
+    }
+  }) : _c("span", [_vm._v("Add Driver")])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

@@ -61,21 +61,6 @@ class RegisterController extends Controller
             ]);
             
             $location = null; // Initialize the $location variable outside the loop
-            
-            foreach ($request->input('longitude') as $key => $longitude) {
-                $latitude = $request->input('latitude')[$key];
-                $note = $request->input('note')[$key];
-                $box = $request->input('box')[$key];
-                $location = new Location();
-                $location->longitude = $longitude;
-                $location->latitude = $latitude;
-                $location->box = $box;
-                $location->note = $note;
-                $location->user_id = $user->id;
-                $location->save();
-            }
-            
-    
             if (config('auth.must_verify_email')) {
                 event(new Registered($user));
             }
